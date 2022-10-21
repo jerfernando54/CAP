@@ -75,8 +75,8 @@ int main(int argc, char **argv) {
 
 	writeImage("test_out.png", img_out, width, height);
 
-	free(img_in);
-	free(img_out);
+	_mm_free(img_in);
+	_mm_free(img_out);
 
 	return(0);
 }
