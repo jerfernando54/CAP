@@ -10,6 +10,13 @@ void ApplyStencil(unsigned char *img_in, unsigned char *img_out, int width, int 
 			val = img_in[(i  )*width + j];
 			__m256i a = _mm256_load_size256((__m256i const *)&img_in[i *width + j]);
 			__m256i b = _mm256_load_size256((__m256i const *)&img_in[(i-1)*width + j-1]);
+			__m256i c = _mm256_load_size256((__m256i const *)&img_in[(i-1)*width + j]);
+			__m256i d = _mm256_load_size256((__m256i const *)&img_in[(i-1)*width + j+1]);
+			__m256i e = _mm256_load_size256((__m256i const *)&img_in[i*width + j-1]);
+			__m256i f = _mm256_load_size256((__m256i const *)&img_in[i*width + j]);
+
+			__m256i g = _mm256_load_size256((__m256i const *)&img_in[(i-1)*width + j]);
+			__m256i h = _mm256_load_size256((__m256i const *)&img_in[(i-1)*width + j]);
 
 			val +=	-img_in[(i-1)*width + j-1] -   img_in[(i-1)*width + j] - img_in[(i-1)*width + j+1] 
 					-img_in[(i  )*width + j-1] + 7*img_in[(i  )*width + j] - img_in[(i  )*width + j+1] 
@@ -28,3 +35,4 @@ void CopyImage(unsigned char *img_in, unsigned char *img_out, int width, int hei
 		for (int j = 0; j < width; j++)
 			img_in[i*width + j] = img_out[i*width + j];
 }
+?¿*""
